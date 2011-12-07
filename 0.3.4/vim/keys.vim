@@ -7,9 +7,10 @@
 " Authors:
 " Mikael Jansson <mail@mikael.jansson.be>
 "
+let maplocalleader = ","
 
 nmap <buffer> <F12>                <Plug>LimpBootConnectDisplay
-nmap <buffer> <C-F12>              <Plug>LimpDisconnect
+"nmap <buffer> <C-F12>              <Plug>LimpDisconnect
 nmap <buffer> <S-F12>              <Plug>LimpShutdownLisp
 
 " Eval Top:           send top-level s-exp to Lisp
@@ -39,6 +40,7 @@ nmap <buffer> <LocalLeader>tt      <Plug>TestTop
 " Load Any File:      load whichever version of this file (.lisp not given)
 nmap <buffer> <LocalLeader>lf      <Plug>LoadThisFile
 nmap <buffer> <LocalLeader>la      <Plug>LoadAnyFile 
+nmap <buffer> <LocalLeader>lw      <Plug>LoadThisFileResetWeblocks
 
 " Compile File:       compile the current file
 " Compile Load File:  compile, then load the current file

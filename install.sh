@@ -36,6 +36,7 @@ ln -sf limp/limp.vim $LISP_FTP/limp.vim
 
 echo "* generating Lisp thesaurus..."
 
+cp -fr bin/* $BASE/$VERSION/bin/
 cd $BASE/$VERSION/bin
 ./make-thesaurus.sh
 

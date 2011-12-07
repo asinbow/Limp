@@ -47,7 +47,6 @@ endif
 
 " prefix for the pipe used for communication
 let s:limp_bridge_channel_base = $HOME . "/.limp_bridge_channel-"
-let s:limp_bridge_connected=0
 exe "setlocal complete+=s" . s:Limp_location . "/vim/thesaurus"
 
 "-------------------------------------------------------------------
@@ -276,6 +275,7 @@ nnoremap <silent> <buffer> <Plug>TestTop        :call  LimpBridge_stuff_top_form
 
 nnoremap <silent> <buffer> <Plug>LoadThisFile    :call LimpBridge_send_to_lisp( "(load \"" . expand( "%:p" ) . "\")\n")<CR>
 nnoremap <silent> <buffer> <Plug>LoadAnyFile     :call LimpBridge_send_to_lisp( "(load \"" . expand( "%:p:r" ) . "\")\n")<CR>
+nnoremap <silent> <buffer> <Plug>LoadThisFileResetWeblocks    :call LimpBridge_send_to_lisp( "(load \"" . expand( "%:p" ) . "\")\n(weblocks:reset-sessions)\n")<CR>
 
 nnoremap <silent> <buffer> <Plug>CompileFile        :w! <bar> call LimpBridge_send_to_lisp("(compile-file \"".expand("%:p")."\")\n")<CR>
 
@@ -311,6 +311,8 @@ nnoremap <silent> <buffer> <Plug>HelpDescribe   :call LimpBridge_send_to_lisp("(
 if exists("*LimpBridge_goto_buffer_or_window")
     finish
 endif
+let s:limp_bridge_connected=0
+autocmd VimLeave * call LimpBridge_shutdown_lisp()
 
 function! LimpBridge_goto_buffer_or_window( buff )
   if -1 == bufwinnr( a:buff )
